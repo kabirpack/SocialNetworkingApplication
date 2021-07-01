@@ -11,14 +11,23 @@ public class Post {
     private String postContent;
     private String postedTime;
     private ArrayList<UserProfile> likes = new ArrayList<>();
-    private HashMap<UserProfile, String> profileCommentMap = new HashMap<>();
-    private HashMap<UserProfile, String> profileShareMap = new HashMap<>();
+    private HashMap<String, String> profileCommentMap = new HashMap<>();
+    private ArrayList<UserProfile> shares = new ArrayList<>();
+    private boolean isShared = false;
 
     public Post(String postId, UserProfile postedProfile, String postContent, String postedTime) {
         this.postId = postId;
         this.postedProfile = postedProfile;
         this.postContent = postContent;
         this.postedTime = postedTime;
+    }
+
+    public boolean isShared() {
+        return isShared;
+    }
+
+    public void setShared(boolean shared) {
+        isShared = shared;
     }
 
     public UserProfile getPostedProfile() {
@@ -58,23 +67,23 @@ public class Post {
         this.likes = likes;
     }
 
-    public HashMap<UserProfile, String> getProfileCommentMap() {
+    public HashMap<String, String> getProfileCommentMap() {
         return profileCommentMap;
     }
 
-    public void addComment(UserProfile profile, String comment){
-        this.profileCommentMap.put(profile, comment);
+    public void addComment(String username, String comment){
+        this.profileCommentMap.put(username, comment);
     }
 
-    public void setProfileCommentMap(HashMap<UserProfile, String> profileCommentMap) {
+    public void setProfileCommentMap(HashMap<String, String> profileCommentMap) {
         this.profileCommentMap = profileCommentMap;
     }
 
-    public HashMap<UserProfile, String> getProfileShareMap() {
-        return profileShareMap;
+    public ArrayList<UserProfile> getShares() {
+        return shares;
     }
 
-    public void setProfileShareMap(HashMap<UserProfile, String> profileShareMap) {
-        this.profileShareMap = profileShareMap;
+    public void setProfileShareMap(ArrayList<UserProfile> shares) {
+        this.shares = shares;
     }
 }

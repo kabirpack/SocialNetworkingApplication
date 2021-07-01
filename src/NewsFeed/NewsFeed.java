@@ -48,11 +48,15 @@ public class NewsFeed {
         }
 
         if(feedPosts.size() > 0){
-            System.out.println("sdsadda");
 //            feedPosts = this.sortByTime(feedPosts);
             int index = 1;
             for (Post post : feedPosts) {
-                System.out.println(index + ". " + post.getPostedProfile().getUsername()+ " :" + post.getPostContent() + post.getPostedTime());
+                if(!post.isShared()){
+                    System.out.println(index + ". " + post.getPostedProfile().getUsername()+ " :" + post.getPostContent() + post.getPostedTime());
+                }else{
+                    System.out.println("Originally posted by"+ post.getPostedProfile().getUsername());
+                    System.out.println(index + ". " + "Shared by"+ SessionManager.getUser().getUsername()+ " :" + post.getPostContent() + post.getPostedTime());
+                }
                 index++;
             }
         }

@@ -50,12 +50,14 @@ public class PostReactionMenu {
         switch(choice){
             case 1:{
                 reactionView.showLikes(post);
+                break;
             }
             case 2: {
                 reactionView.showComments(post);
+                break;
             }
             case 3:{
-//                reactionView.showShare(post);
+                reactionView.showShares(post);
             }
             case 4:{
                 NavigationController.goToMainMenu();

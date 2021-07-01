@@ -14,7 +14,7 @@ public class MyProfileMainMenu {
     ProfileView profileView = new ProfileView();
     EditProfileMenu editProfileMenu = new EditProfileMenu();
 //    MainMenu mainMenu;
-    ConnectionManager cm;
+    ConnectionManager cm = new ConnectionManager();
 
     public void showMyProfileMenu() throws ParseException {
         profileView.showMyProfile();

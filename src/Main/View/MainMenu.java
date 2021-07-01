@@ -41,6 +41,7 @@ public class MainMenu {
             }
             case 5:{
                 profileView.showNotifications();
+                break;
             }
             case 6:{
                 SessionManager.logOut();

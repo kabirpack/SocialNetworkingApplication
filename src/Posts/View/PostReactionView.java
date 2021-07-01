@@ -26,4 +26,14 @@ public class PostReactionView {
         }
     }
 
+    public void showShares(Post post){
+        if(post.getShares().size() > 0){
+            for(UserProfile profile : post.getShares()){
+                System.out.println(profile.getUsername());
+            }
+        }else{
+            System.out.println("No Shares yet");
+        }
+    }
+
 }

@@ -74,7 +74,13 @@ public class ProfileView {
      }
 
      public void showNotifications(){
-
+        if(SessionManager.getUser().getNotifications().size() > 0){
+            for(String notification : SessionManager.getUser().getNotifications()){
+                System.out.println(notification);
+            }
+        }else{
+            System.out.println("No notifications to show");
+        }
      }
 
 }
