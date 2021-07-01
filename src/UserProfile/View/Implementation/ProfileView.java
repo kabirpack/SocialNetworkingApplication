@@ -1,16 +1,17 @@
-package UserProfile.View;
+package UserProfile.View.Implementation;
 
 import Posts.Model.Post;
 import SessionManager.SessionManager;
-import UserProfile.Controller.ProfileManager;
+import UserProfile.Controller.Implementation.ProfileManager;
 import UserProfile.Model.UserProfile;
+import UserProfile.View.Interfaces.IProfileView;
 import Utilities.UtilityManager;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
-public class ProfileView {
+public class ProfileView implements IProfileView {
     UtilityManager  utility = new UtilityManager();
     ProfileManager pm = new ProfileManager();
     boolean done;
@@ -32,7 +33,7 @@ public class ProfileView {
         }else{
             System.out.println(profile.getConnections().size() + " Connections ");
         }
-        this.showMyPosts(profile);
+        this.showPosts(profile);
      }
 
      public void showMyConnections(){
@@ -118,7 +119,7 @@ public class ProfileView {
         }
      }
 
-     public void showMyPosts(UserProfile profile){
+     public void showPosts(UserProfile profile){
         int index = 1;
         if(profile.getPosts().size()>0) {
 

@@ -1,9 +1,9 @@
-package UserProfile.View;
+package UserProfile.View.Implementation;
 
 import Menu.MenuItems.MenuItems;
 import Menu.MenuSelector.MenuSelector;
 import Navigation.NavigationController;
-import UserProfile.Controller.ProfileManager;
+import UserProfile.Controller.Implementation.ProfileManager;
 
 import java.text.ParseException;
 

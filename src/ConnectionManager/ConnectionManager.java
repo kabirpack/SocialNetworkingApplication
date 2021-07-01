@@ -4,9 +4,9 @@ import Navigation.NavigationController;
 import Posts.Model.Post;
 import Posts.View.PostReactionMenu;
 import SessionManager.SessionManager;
-import UserProfile.Controller.ProfileManager;
+import UserProfile.Controller.Implementation.ProfileManager;
 import UserProfile.Model.UserProfile;
-import UserProfile.View.ProfileView;
+import UserProfile.View.Implementation.ProfileView;
 import Utilities.UtilityManager;
 
 import java.text.ParseException;

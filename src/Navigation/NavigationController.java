@@ -2,9 +2,9 @@ package Navigation;
 
 import ConnectionManager.ConnectionMenu;
 import Main.View.MainMenu;
-import NewsFeed.NewsFeed;
+import NewsFeed.Controller.NewsFeed;
 import UserProfile.Model.UserProfile;
-import UserProfile.View.MyProfileMainMenu;
+import UserProfile.View.Implementation.MyProfileMainMenu;
 
 import java.text.ParseException;
 

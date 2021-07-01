@@ -1,4 +1,4 @@
-package NewsFeed;
+package NewsFeed.Controller;
 
 import NewsFeed.View.NewsFeedMenu;
 import Posts.Model.Post;

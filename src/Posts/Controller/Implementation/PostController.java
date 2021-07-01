@@ -1,13 +1,14 @@
-package Posts.Controller;
+package Posts.Controller.Implementation;
 
 import Menu.MenuItems.MenuItems;
 import Menu.MenuSelector.MenuSelector;
+import Posts.Controller.Interface.IPostController;
 import Posts.Model.Post;
 import SessionManager.SessionManager;
-import UserProfile.Controller.ProfileManager;
+import UserProfile.Controller.Implementation.ProfileManager;
 import Utilities.UtilityManager;
 
-public class PostController {
+public class PostController implements IPostController {
     UtilityManager utility = new UtilityManager();
     MenuSelector menuSelector = new MenuSelector();
     ProfileManager pm = new ProfileManager();

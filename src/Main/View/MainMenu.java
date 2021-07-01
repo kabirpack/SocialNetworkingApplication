@@ -3,11 +3,11 @@ package Main.View;
 import ConnectionManager.ConnectionManager;
 import Menu.MenuItems.MenuItems;
 import Menu.MenuSelector.MenuSelector;
-import NewsFeed.NewsFeed;
+import NewsFeed.Controller.NewsFeed;
 import Posts.View.PostForm;
 import SessionManager.SessionManager;
-import UserProfile.View.MyProfileMainMenu;
-import UserProfile.View.ProfileView;
+import UserProfile.View.Implementation.MyProfileMainMenu;
+import UserProfile.View.Implementation.ProfileView;
 
 import java.text.ParseException;
 

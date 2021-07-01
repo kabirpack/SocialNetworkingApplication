@@ -3,7 +3,7 @@ package Posts.View;
 import Menu.MenuItems.MenuItems;
 import Menu.MenuSelector.MenuSelector;
 import Navigation.NavigationController;
-import Posts.Controller.PostController;
+import Posts.Controller.Implementation.PostController;
 import Posts.Model.Post;
 import UserProfile.Model.UserProfile;
 import Utilities.UtilityManager;

@@ -1,6 +1,6 @@
 package Posts.View;
 
-import UserProfile.Controller.ProfileManager;
+import UserProfile.Controller.Implementation.ProfileManager;
 import Utilities.UtilityManager;
 
 import java.util.InputMismatchException;

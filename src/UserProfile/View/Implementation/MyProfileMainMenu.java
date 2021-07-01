@@ -1,11 +1,11 @@
-package UserProfile.View;
+package UserProfile.View.Implementation;
 
 import ConnectionManager.ConnectionManager;
 import Menu.MenuItems.MenuItems;
 import Menu.MenuSelector.MenuSelector;
 import Navigation.NavigationController;
 import SessionManager.SessionManager;
-import UserProfile.Controller.ProfileManager;
+import UserProfile.Controller.Implementation.ProfileManager;
 import UserProfile.Model.UserProfile;
 
 import java.text.ParseException;
@@ -88,7 +88,7 @@ public class MyProfileMainMenu {
                 break;
             }
             case 5:{
-                profileView.showMyPosts(SessionManager.getUser());
+                profileView.showPosts(SessionManager.getUser());
                 if(SessionManager.getUser().getPosts().size()>0){
                     choice = menu.showMenuItems(MenuItems.MyPostsMenu.class);
 

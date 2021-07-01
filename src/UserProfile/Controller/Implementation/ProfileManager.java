@@ -1,12 +1,13 @@
-package UserProfile.Controller;
+package UserProfile.Controller.Implementation;
 
 import Posts.Model.Post;
 import Posts.View.PostReactionMenu;
 import SessionManager.SessionManager;
+import UserProfile.Controller.Interface.IProfileManager;
 import UserProfile.Model.UserProfile;
 import Utilities.UtilityManager;
 
-public class ProfileManager {
+public class ProfileManager implements IProfileManager {
     UtilityManager utility = new UtilityManager();
     PostReactionMenu postReactionMenu = new PostReactionMenu();
 
