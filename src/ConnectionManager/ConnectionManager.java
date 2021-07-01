@@ -6,17 +6,20 @@ import Posts.View.PostReactionMenu;
 import SessionManager.SessionManager;
 import UserProfile.Controller.ProfileManager;
 import UserProfile.Model.UserProfile;
+import UserProfile.View.ProfileView;
 import Utilities.UtilityManager;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 public class ConnectionManager {
     UtilityManager utility = new UtilityManager();
     ArrayList<UserProfile> profiles = SessionManager.getDb().getProfiles();
     PostReactionMenu reactionMenu = new PostReactionMenu();
     ProfileManager pm = new ProfileManager();
-
+    ProfileView profileView = new ProfileView();
+    boolean done;
 
     public void searchProfile() throws ParseException {
 
@@ -31,8 +34,20 @@ public class ConnectionManager {
             }
             int choice = 0;
             System.out.println("Choose Profile");
-            choice = utility.getIntInput();
-            this.chooseProfile(choice-1);
+            this.done = false;
+            while(!this.done) {
+                try {
+                    choice = utility.getIntInput();
+                    if(choice > resultsProfiles.size()){
+                        throw new InputMismatchException();
+                    }
+                    this.done = true;
+                    this.chooseProfile(resultsProfiles,choice-1);
+
+                } catch (InputMismatchException e) {
+                    System.out.println("invalid input, please enter again ");
+                }
+            }
         }else{
             System.out.println("No profile matches your search");
         }
@@ -49,45 +64,34 @@ public class ConnectionManager {
        return searchResults;
     }
 
-    public void chooseProfile(int choice) throws ParseException {
-        UserProfile profile = profiles.get(choice);
-        if(profile.equals(SessionManager.getUser())){
+    public void chooseProfile(ArrayList<UserProfile> searchResults ,int choice) throws ParseException {
+        UserProfile profile = searchResults.get(choice);
+        if (profile.equals(SessionManager.getUser())) {
             NavigationController.goToMyProfileMenu();
-        }
-        else{
-            this.showProfile(profile);
+        } else {
+            profileView.showProfile(profile);
+            if (!isConnected(SessionManager.getUser(), profile)) {
+                NavigationController.goToConnectionMenu(profile);
+            } else {
+                if (profile.getPosts().size() > 0) {
+                    Post postToReact = reactionMenu.choosePost(profile);
+                    reactionMenu.showReactionMenuSelector(postToReact);
+                }
+
+            }
         }
     }
 
-    public void showProfile(UserProfile profile) throws ParseException {
-        pm.sendNotification(profile, "has visited your profile");
-        System.out.println(profile.getUsername());
-        System.out.println(profile.getStatus());
-        // add bio here
-        int index = 1;
-        if(profile.getPosts().size()>0) {
-            for (Post post : profile.getPosts()) {
-                System.out.println(index + ". " + post.getPostContent() + "   " + post.getPostedTime());
-                System.out.println("Likes :" + post.getLikes().size() + "Comments " + post.getProfileCommentMap().size()); // add share here
-                index++;
-            }
-        }else{
-            System.out.println("No post to show");
-        }
-        if(!isConnected(SessionManager.getUser(), profile)){
-            NavigationController.goToConnectionMenu(profile);
-        }
-        else{
-            Post postToReact = reactionMenu.choosePost(profile);
-            reactionMenu.showReactionMenuSelector(postToReact);
-        }
-    }
 
     public void sendConnectionRequest(UserProfile profile){
-        profile.getRcvdRequestProfiles().add(SessionManager.getUser());
-        SessionManager.getUser().getSentRequestProfiles().add(profile);
-        System.out.println("Connection sent successfully");
-        pm.sendNotification(profile, "has sent you a connection request");
+        if(!profile.getRcvdRequestProfiles().contains(SessionManager.getUser())){
+            profile.getRcvdRequestProfiles().add(SessionManager.getUser());
+            SessionManager.getUser().getSentRequestProfiles().add(profile);
+            System.out.println("Connection sent successfully");
+            pm.sendNotification(profile, "has sent you a connection request");
+        }else{
+            System.out.println("request already sent");
+        }
     }
 
 

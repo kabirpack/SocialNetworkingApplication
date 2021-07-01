@@ -10,10 +10,12 @@ import Utilities.UtilityManager;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 public class PostReactionMenu {
     MenuSelector menu = new MenuSelector();
     UtilityManager utility = new UtilityManager();
+    boolean done;
     public void showReactionMenuSelector(Post post) throws ParseException {
 
 
@@ -34,6 +36,11 @@ public class PostReactionMenu {
                 break;
             }
             case 4:{
+                NavigationController.goToNewsFeed();
+                break;
+            }
+
+            case 5:{
                 NavigationController.goToMainMenu();
                 return;
             }
@@ -58,6 +65,7 @@ public class PostReactionMenu {
             }
             case 3:{
                 reactionView.showShares(post);
+                break;
             }
             case 4:{
                 NavigationController.goToMainMenu();
@@ -69,15 +77,39 @@ public class PostReactionMenu {
 
     public Post choosePost(UserProfile profile){
         System.out.println("Choose Post");
-        int choice = utility.getIntInput();
-        return profile.getPosts().get(choice-1);
+        while(!this.done) {
+            try {
+                int choice = utility.getIntInput();
+                if(choice > profile.getPosts().size()){
+                    throw new InputMismatchException();
+                }
+                this.done = true;
+                return profile.getPosts().get(choice-1);
+            } catch (InputMismatchException e) {
+                System.out.println("invalid input, please enter again ");
+            }
+        }
+
+        return null;
     }
 
     public Post choosePost(ArrayList<Post> feedPosts) {
         System.out.println("Choose Post");
-        int choice = utility.getIntInput();
-        return feedPosts.get(choice - 1);
+         this.done = false;
+        while(!this.done) {
+            try {
+                int choice = utility.getIntInput();
+                if(choice > feedPosts.size()){
+                    throw new InputMismatchException();
+                }
+                this.done = true;
+                return feedPosts.get(choice - 1);
 
+            } catch (InputMismatchException e) {
+                System.out.println("invalid input, please enter again ");
+            }
+        }
+        return null;
     }
 
 }

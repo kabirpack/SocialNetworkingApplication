@@ -2,6 +2,7 @@ package Navigation;
 
 import ConnectionManager.ConnectionMenu;
 import Main.View.MainMenu;
+import NewsFeed.NewsFeed;
 import UserProfile.Model.UserProfile;
 import UserProfile.View.MyProfileMainMenu;
 
@@ -22,6 +23,11 @@ public class NavigationController {
     public static void goToMyProfileMenu() throws ParseException {
         MyProfileMainMenu myProfileMainMenu = new MyProfileMainMenu();
         myProfileMainMenu.showMyProfileMenu();
+    }
+
+    public static void goToNewsFeed() throws ParseException {
+        NewsFeed newsFeed = new NewsFeed();
+        newsFeed.showNewsFeed();
     }
 
 }

@@ -1,26 +1,38 @@
 package UserProfile.View;
 
-import ConnectionManager.ConnectionManager;
 import Posts.Model.Post;
 import SessionManager.SessionManager;
+import UserProfile.Controller.ProfileManager;
 import UserProfile.Model.UserProfile;
 import Utilities.UtilityManager;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 public class ProfileView {
     UtilityManager  utility = new UtilityManager();
-
-    public void showMyProfile(){
-        System.out.println(SessionManager.getUser().getUsername());
-        System.out.println(SessionManager.getUser().getStatus());
-        System.out.println(SessionManager.getUser().getConnections().size());
-        int index = 1;
-        for(Post post : SessionManager.getUser().getPosts()){
-            System.out.println(index + ". " + post.getPostContent() + " " + post.getPostedTime());
-            index ++;
+    ProfileManager pm = new ProfileManager();
+    boolean done;
+    public void showProfile(UserProfile profile){
+        if(!profile.equals(SessionManager.getUser())){
+            pm.sendNotification(profile, "has visited your profile");
         }
+        System.out.println("_______________________________________________________");
+        if(profile.equals(SessionManager.getUser())){
+            System.out.println("MY PROFILE");
+        }else{
+            System.out.println("PROFILE PAGE");
+        }
+        System.out.println("Profile Name : " + profile.getUsername());
+        System.out.println("My Status : " + profile.getStatus());
+        System.out.println("My Bio : " + profile.getBio());
+        if(profile.getConnections().size() == 0){
+            System.out.println("No connections made yet");
+        }else{
+            System.out.println(profile.getConnections().size() + " Connections ");
+        }
+        this.showMyPosts(profile);
      }
 
      public void showMyConnections(){
@@ -62,15 +74,38 @@ public class ProfileView {
 
      public void visitProfile() throws ParseException {
          System.out.println("Choose Profile to visit");
-        int choice = utility.getIntInput();
-        ConnectionManager cm = new ConnectionManager();
-        cm.showProfile(SessionManager.getUser().getConnections().get(choice-1));
+         this.done = false;
+         while(!this.done) {
+             try {
+                 int choice = utility.getIntInput();
+                 if(choice > SessionManager.getUser().getConnections().size()){
+                     throw new InputMismatchException();
+                 }
+                 this.done = true;
+                 this.showProfile(SessionManager.getUser().getConnections().get(choice-1));
+             } catch (InputMismatchException e) {
+                 System.out.println("Invalid input, please enter again ");
+             }
+         }
      }
 
      public UserProfile chooseProfile(ArrayList<UserProfile> profiles){
          System.out.println("Choose Profile");
-         int choice = utility.getIntInput();
-         return profiles.get(choice-1);
+         this.done = false;
+         while(!this.done) {
+             try {
+                 int choice = utility.getIntInput();
+                 if(choice > profiles.size()){
+                     throw new InputMismatchException();
+                 }
+                 this.done = true;
+                 return profiles.get(choice-1);
+
+             } catch (InputMismatchException e) {
+                 System.out.println("invalid input, please enter again ");
+             }
+         }
+         return null;
      }
 
      public void showNotifications(){
@@ -83,17 +118,26 @@ public class ProfileView {
         }
      }
 
-     public void showMyPosts(){
+     public void showMyPosts(UserProfile profile){
         int index = 1;
-         if(SessionManager.getUser().getPosts().size()>0) {
-             for (Post post : SessionManager.getUser().getPosts()) {
-                 System.out.println(index + ". " + post.getPostContent() + "   " + post.getPostedTime());
-                 System.out.println("Likes : " + post.getLikes().size() + " Comments " + post.getProfileCommentMap().size() + " Shares " + post.getShares().size()); // add share here
-                 index++;
-             }
-         }else{
-             System.out.println("No post to show");
-         }
+        if(profile.getPosts().size()>0) {
+
+            System.out.println("MY POSTS");
+            System.out.println("_______________________________________________________");
+            for(Post post : profile.getPosts()){
+                if(!post.isShared()){
+                    System.out.println(index + ". " + post.getPostedProfile().getUsername()+ " :" + post.getPostContent()+ " " + post.getPostedTime());
+
+                }else{
+                    System.out.println("Originally posted by "+ post.getPostedProfile().getUsername());
+                    System.out.println(index + ". " + "Shared by "+ post.getSharedProfile() + " :" + post.getPostContent()+ " " + post.getPostedTime());
+                }
+                index ++;
+                System.out.println("_______________________________________________________");
+            }
+        }else{
+            System.out.println("No post to show");
+        }
 
      }
 

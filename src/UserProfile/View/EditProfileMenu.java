@@ -21,7 +21,8 @@ public class EditProfileMenu {
               break;
             }
             case 2:{
-                //pm.updateBio();
+                pm.updateBio();
+                break;
             }
             case 3:{
                 pm.changeUserName();

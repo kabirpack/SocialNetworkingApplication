@@ -32,6 +32,7 @@ public class MenuItems {
         LIKE,
         COMMENT,
         SHARE,
+        GO_BACK_TO_NEWSFEED,
         MAIN_MENU
     }
 
@@ -56,7 +57,6 @@ public class MenuItems {
         UPDATE_STATUS,
         UPDATE_BIO,
         CHANGE_USERNAME,
-        CHANGE_PASSWORD,
         GO_BACK
     }
 

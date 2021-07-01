@@ -18,7 +18,7 @@ public class MyProfileMainMenu {
     ProfileManager pm = new ProfileManager();
 
     public void showMyProfileMenu() throws ParseException {
-        profileView.showMyProfile();
+        profileView.showProfile(SessionManager.getUser());
         int choice = menu.showMenuItems(MenuItems.MyProfileMenu.class);
         switch (choice){
 
@@ -71,7 +71,7 @@ public class MyProfileMainMenu {
                     switch (choice) {
                         case 1: {
                             UserProfile chosenProfile =  profileView.chooseProfile(SessionManager.getUser().getRcvdRequestProfiles());
-                            cm.deleteSentRequest(chosenProfile);
+                            cm.deleteReceivedRequest(chosenProfile);
                             break;
                         }
                         case 2: {
@@ -88,7 +88,7 @@ public class MyProfileMainMenu {
                 break;
             }
             case 5:{
-                profileView.showMyPosts();
+                profileView.showMyPosts(SessionManager.getUser());
                 if(SessionManager.getUser().getPosts().size()>0){
                     choice = menu.showMenuItems(MenuItems.MyPostsMenu.class);
 

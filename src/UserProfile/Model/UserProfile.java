@@ -25,7 +25,7 @@ public class UserProfile {
         this.username = username;
         this.password = password;
         this.status = "Hey there Iam Using Social Network Application!";
-        this.bio = "No bio added yet";
+        this.bio = "My bio will be added soon! :)";
     }
 
     public String getID() {

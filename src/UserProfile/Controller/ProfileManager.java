@@ -54,4 +54,12 @@ public class ProfileManager {
         profile.addNotification(SessionManager.getUser().getUsername() + " " + message);
     }
 
+    public void updateBio(){
+        System.out.println("Existing Status " + SessionManager.getUser().getBio());
+        System.out.println("Enter Short description about yourself: ");
+        String bio = utility.getStringInput();
+        SessionManager.getUser().setBio(bio);
+        System.out.println("Bio Updated Successfully");
+    }
+
 }

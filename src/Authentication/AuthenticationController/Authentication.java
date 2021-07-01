@@ -51,6 +51,5 @@ public class Authentication {
     public void register(String username, String password){
         UserProfile user = new UserProfile(username, password);
         db.addProfile(user);
-        System.out.println(db.getProfiles().size());
     }
 }

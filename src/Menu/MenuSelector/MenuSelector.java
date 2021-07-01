@@ -1,13 +1,13 @@
 package Menu.MenuSelector;
 
+import Utilities.UtilityManager;
+
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class MenuSelector <E extends Enum<E>> {
-
+    UtilityManager utility = new UtilityManager();
     boolean done;
     int choice;
-    Scanner sc = new Scanner(System.in);
 
     public int showMenuItems(Class<E> menuData) {
         int index = 1;
@@ -20,7 +20,7 @@ public class MenuSelector <E extends Enum<E>> {
         this.done = false;
         while(!this.done){
             try{
-                choice = sc.nextInt();
+                choice = utility.getIntInput();
                 if(choice > menuItemCount){
                     throw new InputMismatchException("Invalid");
                 }else{

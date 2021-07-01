@@ -9,6 +9,8 @@ import UserProfile.Model.UserProfile;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class NewsFeed {
     UserProfile user;
@@ -16,6 +18,7 @@ public class NewsFeed {
     ArrayList<UserProfile> myConnections;
     ArrayList<Post> feedPosts = new ArrayList<>();
     NewsFeedMenu newsFeed = new NewsFeedMenu();
+
 
     public void showNewsFeed() throws ParseException {
         user = SessionManager.getUser();
@@ -37,15 +40,18 @@ public class NewsFeed {
 
 
         if(feedPosts.size() > 0){
-//            feedPosts = this.sortByTime(feedPosts);
+            feedPosts = this.sortByTime(feedPosts);
             int index = 1;
             for (Post post : feedPosts) {
                 if(!post.isShared()){
-                    System.out.println(index + ". " + post.getPostedProfile().getUsername()+ " :" + post.getPostContent() + post.getPostedTime());
+                    System.out.println(index + ". " + post.getPostedProfile().getUsername()+ " :" + post.getPostContent()+ " " + post.getPostedTime());
+
                 }else{
-                    System.out.println("Originally posted by"+ post.getPostedProfile().getUsername());
-                    System.out.println(index + ". " + "Shared by"+ post.getSharedProfile() + " :" + post.getPostContent() + post.getPostedTime());
+                    System.out.println("Originally posted by "+ post.getPostedProfile().getUsername());
+                    System.out.println(index + ". " + "Shared by "+ post.getSharedProfile() + " :" + post.getPostContent()+ " " + post.getPostedTime());
                 }
+                System.out.println("Likes : " + post.getLikes().size() + " Comments " + post.getProfileCommentMap().size() + " Shares " + post.getShares().size());
+                System.out.println("_______________________________________________________");
                 index++;
             }
             newsFeed.newsFeedMenu(feedPosts);
@@ -56,17 +62,25 @@ public class NewsFeed {
     }
 
     public ArrayList<Post> sortByTime(ArrayList<Post> posts) throws ParseException {
+        Post temp;
         if(posts.size() == 1){
             return posts;
         }else {
-            ArrayList<Post> sortedPosts = new ArrayList<>();
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-            for (int i = 0; i < posts.size() - 1; i++) {
-                if (sdf.parse(posts.get(i + 1).getPostedTime()).before(sdf.parse(posts.get(i).getPostedTime()))) {
-                    sortedPosts.add(0, posts.get(i + 1));
+            Collections.sort(posts, new Comparator<Post>() {
+                @Override
+                public int compare(Post o1, Post o2) {
+                    try {
+                        if (sdf.parse(o1.getPostedTime()) == null || sdf.parse(o2.getPostedTime()) == null)
+                            return 0;
+                        return sdf.parse(o1.getPostedTime()).compareTo(sdf.parse(o2.getPostedTime()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    return 0;
                 }
-            }
-            return sortedPosts;
+            });
         }
+        return posts;
     }
 }
