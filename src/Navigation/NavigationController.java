@@ -23,4 +23,5 @@ public class NavigationController {
         MyProfileMainMenu myProfileMainMenu = new MyProfileMainMenu();
         myProfileMainMenu.showMyProfileMenu();
     }
+
 }

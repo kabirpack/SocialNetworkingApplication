@@ -83,4 +83,18 @@ public class ProfileView {
         }
      }
 
+     public void showMyPosts(){
+        int index = 1;
+         if(SessionManager.getUser().getPosts().size()>0) {
+             for (Post post : SessionManager.getUser().getPosts()) {
+                 System.out.println(index + ". " + post.getPostContent() + "   " + post.getPostedTime());
+                 System.out.println("Likes : " + post.getLikes().size() + " Comments " + post.getProfileCommentMap().size() + " Shares " + post.getShares().size()); // add share here
+                 index++;
+             }
+         }else{
+             System.out.println("No post to show");
+         }
+
+     }
+
 }

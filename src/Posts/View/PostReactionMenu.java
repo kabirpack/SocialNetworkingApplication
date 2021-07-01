@@ -67,17 +67,17 @@ public class PostReactionMenu {
         this.showOthersReactionMenuSelector(post);
     }
 
-
-
     public Post choosePost(UserProfile profile){
         System.out.println("Choose Post");
         int choice = utility.getIntInput();
         return profile.getPosts().get(choice-1);
     }
 
-    public Post choosePost(ArrayList<Post> feedPosts){
+    public Post choosePost(ArrayList<Post> feedPosts) {
         System.out.println("Choose Post");
         int choice = utility.getIntInput();
-        return feedPosts.get(choice-1);
+        return feedPosts.get(choice - 1);
+
     }
+
 }

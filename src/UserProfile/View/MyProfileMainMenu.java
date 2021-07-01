@@ -5,6 +5,7 @@ import Menu.MenuItems.MenuItems;
 import Menu.MenuSelector.MenuSelector;
 import Navigation.NavigationController;
 import SessionManager.SessionManager;
+import UserProfile.Controller.ProfileManager;
 import UserProfile.Model.UserProfile;
 
 import java.text.ParseException;
@@ -13,8 +14,8 @@ public class MyProfileMainMenu {
     MenuSelector menu = new MenuSelector();
     ProfileView profileView = new ProfileView();
     EditProfileMenu editProfileMenu = new EditProfileMenu();
-//    MainMenu mainMenu;
     ConnectionManager cm = new ConnectionManager();
+    ProfileManager pm = new ProfileManager();
 
     public void showMyProfileMenu() throws ParseException {
         profileView.showMyProfile();
@@ -87,6 +88,24 @@ public class MyProfileMainMenu {
                 break;
             }
             case 5:{
+                profileView.showMyPosts();
+                if(SessionManager.getUser().getPosts().size()>0){
+                    choice = menu.showMenuItems(MenuItems.MyPostsMenu.class);
+
+                    switch(choice){
+                        case 1:{
+                            pm.deletePost();
+                            break;
+                        }
+                        case 2:
+                            NavigationController.goToMainMenu();
+                            return;
+                    }
+
+                }
+
+            }
+            case 6:{
                 NavigationController.goToMainMenu();
                 return;
             }

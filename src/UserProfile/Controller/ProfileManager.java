@@ -1,12 +1,14 @@
 package UserProfile.Controller;
 
 import Posts.Model.Post;
+import Posts.View.PostReactionMenu;
 import SessionManager.SessionManager;
 import UserProfile.Model.UserProfile;
 import Utilities.UtilityManager;
 
 public class ProfileManager {
     UtilityManager utility = new UtilityManager();
+    PostReactionMenu postReactionMenu = new PostReactionMenu();
 
     public void addPost(String postContent){
         Post newPost = new Post(utility.generateID(),SessionManager.getUser(), postContent, utility.getCurrentTime());
@@ -14,6 +16,12 @@ public class ProfileManager {
         newPost.setPostedProfile(SessionManager.getUser());
         this.sendCommonNotification("has added new post");
         System.out.println("Post Added Successfully");
+    }
+
+    public void deletePost(){
+        Post chosenPost = postReactionMenu.choosePost(SessionManager.getUser());
+        SessionManager.getUser().getPosts().remove(chosenPost);
+        System.out.println("Post deleted Succesfully");
     }
 
 
@@ -40,12 +48,6 @@ public class ProfileManager {
                 profile.addNotification(SessionManager.getUser().getUsername() + " " + message);
             }
         }
-        if(SessionManager.getUser().getFollowerProfiles().size()>0){
-            for(UserProfile profile : SessionManager.getUser().getFollowerProfiles()){
-                profile.addNotification(SessionManager.getUser().getUsername() + " " + message);
-            }
-        }
-
     }
 
     public void sendNotification(UserProfile profile, String message){

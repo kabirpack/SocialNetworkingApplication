@@ -17,8 +17,6 @@ public class UserProfile {
     private ArrayList<UserProfile> connections = new ArrayList<>();
     private ArrayList<UserProfile> sentRequestProfiles = new ArrayList<>();
     private ArrayList<UserProfile> rcvdRequestProfiles = new ArrayList<>();
-    private ArrayList<UserProfile> followingProfiles = new ArrayList<>();
-    private ArrayList<UserProfile> followerProfiles = new ArrayList<>();
 
 
     public UserProfile(String username, String password) {
@@ -114,19 +112,4 @@ public class UserProfile {
         this.rcvdRequestProfiles = rcvdRequestProfiles;
     }
 
-    public ArrayList<UserProfile> getFollowingProfiles() {
-        return followingProfiles;
-    }
-
-    public void setFollowingProfiles(ArrayList<UserProfile> followingProfiles) {
-        this.followingProfiles = followingProfiles;
-    }
-
-    public ArrayList<UserProfile> getFollowerProfiles() {
-        return followerProfiles;
-    }
-
-    public void setFollowerProfiles(ArrayList<UserProfile> followerProfiles) {
-        this.followerProfiles = followerProfiles;
-    }
 }

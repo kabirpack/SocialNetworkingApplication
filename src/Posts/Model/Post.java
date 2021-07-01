@@ -11,15 +11,20 @@ public class Post {
     private String postContent;
     private String postedTime;
     private ArrayList<UserProfile> likes = new ArrayList<>();
-    private HashMap<String, String> profileCommentMap = new HashMap<>();
+    private ArrayList<HashMap<String, String>> profileCommentMap = new ArrayList<>();
     private ArrayList<UserProfile> shares = new ArrayList<>();
     private boolean isShared = false;
+    private String sharedProfile;
 
     public Post(String postId, UserProfile postedProfile, String postContent, String postedTime) {
         this.postId = postId;
         this.postedProfile = postedProfile;
         this.postContent = postContent;
         this.postedTime = postedTime;
+    }
+
+    public Post() {
+
     }
 
     public boolean isShared() {
@@ -67,23 +72,26 @@ public class Post {
         this.likes = likes;
     }
 
-    public HashMap<String, String> getProfileCommentMap() {
+    public ArrayList<HashMap<String, String>> getProfileCommentMap() {
         return profileCommentMap;
     }
 
     public void addComment(String username, String comment){
-        this.profileCommentMap.put(username, comment);
+        HashMap<String, String> commentMap = new HashMap<>();
+        commentMap.put(username,comment);
+        this.profileCommentMap.add(commentMap);
     }
 
-    public void setProfileCommentMap(HashMap<String, String> profileCommentMap) {
-        this.profileCommentMap = profileCommentMap;
-    }
 
     public ArrayList<UserProfile> getShares() {
         return shares;
     }
 
-    public void setProfileShareMap(ArrayList<UserProfile> shares) {
-        this.shares = shares;
+    public String getSharedProfile() {
+        return sharedProfile;
+    }
+
+    public void setSharedProfile(String sharedProfile) {
+        this.sharedProfile = sharedProfile;
     }
 }

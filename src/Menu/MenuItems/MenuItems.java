@@ -17,9 +17,8 @@ public class MenuItems {
     }
 
     public enum ConnectionMenu {
-        REACT_TO_POSTS,  // add this to post controller
+        REACT_TO_POSTS,
         SEND_CONNECTION_REQUEST,
-        FOLLOW,
         MAIN_MENU
     }
 
@@ -49,6 +48,7 @@ public class MenuItems {
         MY_CONNECTIONS,
         MY_REQUESTS,
         RECEIVED_REQUESTS,
+        MY_POSTS,
         MAIN_MENU
     }
 
@@ -81,6 +81,10 @@ public class MenuItems {
         NO
     }
 
+    public enum MyPostsMenu{
+        DELETE_POST,
+        MAIN_MENU
+    }
 
 
 }

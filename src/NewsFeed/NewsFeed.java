@@ -5,18 +5,15 @@ import Posts.Model.Post;
 import SessionManager.SessionManager;
 import SocialNetworkDb.Implementation.SocialNetworkDb;
 import UserProfile.Model.UserProfile;
-import Utilities.UtilityManager;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class NewsFeed {
-    UtilityManager utility = new UtilityManager();
     UserProfile user;
     SocialNetworkDb db;
     ArrayList<UserProfile> myConnections;
-    ArrayList<UserProfile> followingProfiles;
     ArrayList<Post> feedPosts = new ArrayList<>();
     NewsFeedMenu newsFeed = new NewsFeedMenu();
 
@@ -38,14 +35,6 @@ public class NewsFeed {
             }
         }
 
-        if(user.getFollowingProfiles().size() > 0) {
-            followingProfiles = user.getFollowingProfiles();
-            for (int i = 0; i < followingProfiles.size(); i++) {
-                for (Post post : followingProfiles.get(i).getPosts()) {
-                    feedPosts.add(post);
-                }
-            }
-        }
 
         if(feedPosts.size() > 0){
 //            feedPosts = this.sortByTime(feedPosts);
@@ -55,12 +44,14 @@ public class NewsFeed {
                     System.out.println(index + ". " + post.getPostedProfile().getUsername()+ " :" + post.getPostContent() + post.getPostedTime());
                 }else{
                     System.out.println("Originally posted by"+ post.getPostedProfile().getUsername());
-                    System.out.println(index + ". " + "Shared by"+ SessionManager.getUser().getUsername()+ " :" + post.getPostContent() + post.getPostedTime());
+                    System.out.println(index + ". " + "Shared by"+ post.getSharedProfile() + " :" + post.getPostContent() + post.getPostedTime());
                 }
                 index++;
             }
+            newsFeed.newsFeedMenu(feedPosts);
+        }else{
+            System.out.println("No Posts to show");
         }
-        newsFeed.newsFeedMenu(feedPosts);
 
     }
 

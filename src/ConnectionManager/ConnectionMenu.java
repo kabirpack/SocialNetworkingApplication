@@ -11,7 +11,7 @@ import java.text.ParseException;
 
 public class ConnectionMenu {
     MenuSelector menuSelector = new MenuSelector();
-    PostReactionMenu reactionMenu;
+    PostReactionMenu reactionMenu = new PostReactionMenu();
     ConnectionManager cm = new ConnectionManager();
     MainMenu mainMenu = new MainMenu();
 
@@ -34,13 +34,10 @@ public class ConnectionMenu {
                 break;
             }
             case 3:{
-                cm.followProfile(profile);
-                break;
-            }
-            case 4:{
                 mainMenu.welcomeMenu();
                 return;
             }
+
         }
         this.connectionMenu(profile);
     }

@@ -23,7 +23,9 @@ public class PostController {
         else{
             post.addLike(SessionManager.getUser());
             System.out.println("Like added");
-            pm.sendNotification(post.getPostedProfile(), " has liked your post, posted on " + post.getPostedTime());
+            if(!post.getPostedProfile().equals(SessionManager.getUser())){
+                pm.sendNotification(post.getPostedProfile(), " has liked your post, posted on " + post.getPostedTime());
+            }
         }
     }
 
@@ -31,14 +33,23 @@ public class PostController {
         System.out.println("Enter Comment");
         String comment = utility.getStringInput();
         post.addComment(SessionManager.getUser().getUsername(), comment);
-        pm.sendNotification(post.getPostedProfile(), " has commented your post, posted on " + post.getPostedTime());
+        if(!post.getPostedProfile().equals(SessionManager.getUser())){
+            pm.sendNotification(post.getPostedProfile(), " has commented your post, posted on " + post.getPostedTime());
+        }
     }
 
     public void Share(Post post){
         post.getShares().add(SessionManager.getUser());
-        Post sharedPost = post;
+        Post sharedPost = new Post();
+        sharedPost.setPostedProfile(post.getPostedProfile());
         sharedPost.setShared(true);
+        sharedPost.setPostContent(post.getPostContent());
+        sharedPost.setPostedTime(utility.getCurrentTime());
+        sharedPost.setSharedProfile(SessionManager.getUser().getUsername());
         SessionManager.getUser().getPosts().add(sharedPost);
-        pm.sendNotification(post.getPostedProfile(), " has shared your post, posted on " + post.getPostedTime());
+        if(!post.getPostedProfile().equals(SessionManager.getUser())){
+            pm.sendNotification(post.getPostedProfile(), " has shared your post, posted on " + post.getPostedTime());
+        }
     }
+
 }

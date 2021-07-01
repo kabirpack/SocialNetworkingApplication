@@ -53,9 +53,9 @@ public class ConnectionManager {
         UserProfile profile = profiles.get(choice);
         if(profile.equals(SessionManager.getUser())){
             NavigationController.goToMyProfileMenu();
-        }else{
+        }
+        else{
             this.showProfile(profile);
-            NavigationController.goToConnectionMenu(profile);
         }
     }
 
@@ -85,23 +85,19 @@ public class ConnectionManager {
 
     public void sendConnectionRequest(UserProfile profile){
         profile.getRcvdRequestProfiles().add(SessionManager.getUser());
+        SessionManager.getUser().getSentRequestProfiles().add(profile);
+        System.out.println("Connection sent successfully");
         pm.sendNotification(profile, "has sent you a connection request");
     }
 
-    public void followProfile(UserProfile profile){
-        SessionManager.getUser().getFollowingProfiles().add(profile);
-        pm.sendNotification(profile, "has started following you");
-    }
+
 
     public void acceptRequest(UserProfile profile){
         profile.getSentRequestProfiles().remove(SessionManager.getUser());
         profile.getConnections().add(SessionManager.getUser());
-        profile.getFollowingProfiles().add(SessionManager.getUser());
-        profile.getFollowerProfiles().add(SessionManager.getUser());
         SessionManager.getUser().getRcvdRequestProfiles().remove(profile);
         SessionManager.getUser().getConnections().add(profile);
-        SessionManager.getUser().getFollowingProfiles().add(profile);
-        SessionManager.getUser().getFollowerProfiles().add(profile);
+        System.out.println("You and " + profile.getUsername() + " is now connected");
         pm.sendNotification(profile, "has accepted your connection request");
     }
 
@@ -121,6 +117,7 @@ public class ConnectionManager {
         }
         return false;
     }
+
 
 
 }
