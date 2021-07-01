@@ -10,8 +10,10 @@ public class UserProfile {
     private String ID;
     private String username;
     private String password;
-    private String Status;
+    private String bio;
+    private String status;
     private ArrayList<Post> posts = new ArrayList<>();
+    private ArrayList<String> notifications = new ArrayList<>();
     private ArrayList<UserProfile> connections = new ArrayList<>();
     private ArrayList<UserProfile> sentRequestProfiles = new ArrayList<>();
     private ArrayList<UserProfile> rcvdRequestProfiles = new ArrayList<>();
@@ -24,6 +26,8 @@ public class UserProfile {
         this.ID = utility.generateID();
         this.username = username;
         this.password = password;
+        this.status = "Hey there Iam Using Social Network Application!";
+        this.bio = "No bio added yet";
     }
 
     public String getID() {
@@ -51,11 +55,19 @@ public class UserProfile {
     }
 
     public String getStatus() {
-        return Status;
+        return status;
     }
 
     public void setStatus(String status) {
-        Status = status;
+        this.status = status;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public ArrayList<Post> getPosts() {
@@ -64,6 +76,18 @@ public class UserProfile {
 
     public void setPosts(ArrayList<Post> posts) {
         this.posts = posts;
+    }
+
+    public ArrayList<String> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(ArrayList<String> notifications) {
+        this.notifications = notifications;
+    }
+
+    public void addNotification(String notification){
+        this.notifications.add(notification);
     }
 
     public ArrayList<UserProfile> getConnections() {

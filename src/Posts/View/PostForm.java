@@ -11,7 +11,7 @@ public class PostForm {
     ProfileManager pm = new ProfileManager();
 
 
-    public void getPostContent(){
+    public void createPost(){
          this.done = false;
         while(!this.done){
             try{

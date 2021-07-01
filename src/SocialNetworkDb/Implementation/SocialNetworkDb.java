@@ -12,7 +12,7 @@ public class SocialNetworkDb {
         return profiles;
     }
 
-    public void addAccount(UserProfile profile){
+    public void addProfile(UserProfile profile){
         this.profiles.add(profile);
     }
 

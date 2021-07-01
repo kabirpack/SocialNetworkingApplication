@@ -4,6 +4,8 @@ import Authentication.AuthenticationView.AuthenticationMenu;
 import SocialNetworkDb.Implementation.SocialNetworkDb;
 import UserProfile.Model.UserProfile;
 
+import java.text.ParseException;
+
 public class SessionManager {
 
     private static UserProfile user;
@@ -25,7 +27,8 @@ public class SessionManager {
         SessionManager.db = db;
     }
 
-    public static void logOut(){
+
+    public static void logOut() throws ParseException {
         AuthenticationMenu menu = new AuthenticationMenu();
         menu.authenticationMenu();
     }

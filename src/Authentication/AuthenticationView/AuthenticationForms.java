@@ -5,6 +5,7 @@ import SessionManager.SessionManager;
 import UserProfile.Model.UserProfile;
 import Utilities.UtilityManager;
 
+import java.text.ParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -40,7 +41,7 @@ public class AuthenticationForms {
         }
     }
 
-    public UserProfile loginForm(){
+    public UserProfile loginForm() throws ParseException {
         this.done = false;
         while (!done) {
             try {

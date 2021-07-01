@@ -10,9 +10,9 @@ public class Post {
     private UserProfile postedProfile;
     private String postContent;
     private String postedTime;
-    private ArrayList<UserProfile> likes;
-    private HashMap<UserProfile, String> profileCommentMap;
-    private HashMap<UserProfile, String> profileShareMap;
+    private ArrayList<UserProfile> likes = new ArrayList<>();
+    private HashMap<UserProfile, String> profileCommentMap = new HashMap<>();
+    private HashMap<UserProfile, String> profileShareMap = new HashMap<>();
 
     public Post(String postId, UserProfile postedProfile, String postContent, String postedTime) {
         this.postId = postId;
@@ -50,12 +50,20 @@ public class Post {
         return likes;
     }
 
+    public void addLike(UserProfile profile){
+        this.likes.add(profile);
+    }
+
     public void setLikes(ArrayList<UserProfile> likes) {
         this.likes = likes;
     }
 
     public HashMap<UserProfile, String> getProfileCommentMap() {
         return profileCommentMap;
+    }
+
+    public void addComment(UserProfile profile, String comment){
+        this.profileCommentMap.put(profile, comment);
     }
 
     public void setProfileCommentMap(HashMap<UserProfile, String> profileCommentMap) {

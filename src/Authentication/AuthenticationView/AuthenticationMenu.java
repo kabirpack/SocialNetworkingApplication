@@ -6,15 +6,17 @@ import Menu.MenuSelector.MenuSelector;
 import SessionManager.SessionManager;
 import UserProfile.Model.UserProfile;
 
+import java.text.ParseException;
+
 public class AuthenticationMenu {
 
     private MenuSelector menu = new MenuSelector();
     private AuthenticationForms authForms = new AuthenticationForms();
     MainMenu mainMenu = new MainMenu();
 
-    public void authenticationMenu(){
+    public void authenticationMenu() throws ParseException {
 
-        int choice = menu.showMenuItems(MenuItems.landingMenu.class);
+        int choice = menu.showMenuItems(MenuItems.LandingMenu.class);
 
         switch (choice){
             case 1: {
@@ -23,8 +25,7 @@ public class AuthenticationMenu {
             }
             case 2:{
                 UserProfile user = authForms.loginForm();
-                SessionManager session = new SessionManager();
-                session.setUser(user);
+                SessionManager.setUser(user);
                 mainMenu.welcomeMenu();
                 return;
             }
