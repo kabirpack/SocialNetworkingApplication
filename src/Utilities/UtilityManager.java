@@ -7,6 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UtilityManager {
 
@@ -34,5 +36,19 @@ public class UtilityManager {
     public Date getDatefromString(String date) throws ParseException {
         Date date1=new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(date);
         return date1;
+    }
+
+    public boolean isValidPassword(String password)
+    {
+        String regex = "^(?=.*[0-9])"
+                + "(?=.*[a-z])(?=.*[A-Z])"
+                + "(?=.*[@#$%^&+=])"
+                + "(?=\\S+$).{8,20}$";
+        Pattern p = Pattern.compile(regex);
+        if (password == null) {
+            return false;
+        }
+        Matcher m = p.matcher(password);
+        return m.matches();
     }
 }

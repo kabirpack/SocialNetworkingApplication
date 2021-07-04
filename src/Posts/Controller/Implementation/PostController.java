@@ -1,5 +1,6 @@
 package Posts.Controller.Implementation;
 
+import Comment.Model.Comment;
 import Menu.MenuItems.MenuItems;
 import Menu.MenuSelector.MenuSelector;
 import Posts.Controller.Interface.IPostController;
@@ -32,8 +33,9 @@ public class PostController implements IPostController {
 
     public void addComment(Post post){
         System.out.println("Enter Comment");
-        String comment = utility.getStringInput();
-        post.addComment(SessionManager.getUser().getUsername(), comment);
+        String commentContent = utility.getStringInput();
+        Comment newComment = new Comment(SessionManager.getUser(),post.getPostId(),commentContent);
+        post.getComments().add(newComment);
         if(!post.getPostedProfile().equals(SessionManager.getUser())){
             pm.sendNotification(post.getPostedProfile(), " has commented your post, posted on " + post.getPostedTime());
         }
@@ -48,6 +50,7 @@ public class PostController implements IPostController {
         sharedPost.setPostedTime(utility.getCurrentTime());
         sharedPost.setSharedProfile(SessionManager.getUser().getUsername());
         SessionManager.getUser().getPosts().add(sharedPost);
+        System.out.println("Post shared in your timeline successfuly");
         if(!post.getPostedProfile().equals(SessionManager.getUser())){
             pm.sendNotification(post.getPostedProfile(), " has shared your post, posted on " + post.getPostedTime());
         }

@@ -43,6 +43,25 @@ public class MenuItems {
         MAIN_MENU
     }
 
+    public enum CommentReactionMenu{
+        LIKE_COMMENT,
+        REPLY_TO_COMMENT,
+        GO_BACK
+    }
+
+    public enum showCommentReactionMenu {
+        SHOW_COMMENT_LIKES,
+        SHOW_COMMENT_REPLIES,
+        GO_BACK
+    }
+
+    public enum CommentSectionMenu {
+        REACT_TO_COMMENT,
+        SEE_OTHERS_REACTIONS,
+        GO_BACK
+    }
+
+
 
     public enum MyProfileMenu {
         EDIT_PROFILE,

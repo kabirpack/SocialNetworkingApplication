@@ -30,17 +30,25 @@ public class ProfileManager implements IProfileManager {
         System.out.println("Existing Status " + SessionManager.getUser().getStatus());
         System.out.println("Enter Status: ");
         String status = utility.getStringInput();
-        SessionManager.getUser().setStatus(status);
-        this.sendCommonNotification(" has updated their status");
-        System.out.println("Status Updated Successfully");
+        if(!status.equals("")){
+            SessionManager.getUser().setStatus(status);
+            this.sendCommonNotification(" has updated their status");
+            System.out.println("Status Updated Successfully");
+        }else{
+            System.out.println("Status cannot be empty");
+        }
     }
 
     public void changeUserName(){
         System.out.println("Existing username " + SessionManager.getUser().getUsername());
         System.out.println("Enter new username: ");
         String username = utility.getStringInput();
-        SessionManager.getUser().setUsername(username);
-        System.out.println("username Updated Successfully");
+        if(!username.equals("")){
+            SessionManager.getUser().setUsername(username);
+            System.out.println("username Updated Successfully");
+        }else{
+            System.out.println("Username cannot be empty");
+        }
     }
 
     public void sendCommonNotification(String message){
@@ -59,8 +67,12 @@ public class ProfileManager implements IProfileManager {
         System.out.println("Existing Status " + SessionManager.getUser().getBio());
         System.out.println("Enter Short description about yourself: ");
         String bio = utility.getStringInput();
-        SessionManager.getUser().setBio(bio);
-        System.out.println("Bio Updated Successfully");
+        if(!bio.equals("")){
+            SessionManager.getUser().setBio(bio);
+            System.out.println("Bio Updated Successfully");
+        }else{
+            System.out.println("Bio Cannot be empty");
+        }
     }
 
 }

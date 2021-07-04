@@ -17,15 +17,14 @@ public class PostForm {
             try{
                 System.out.println("What's in you mind?");
                 String postContent = utility.getStringInput();
-                if(postContent == "" || postContent == null){
-                    System.out.println("Post content cannot be empty");
+                if(postContent.equals("")){
                     throw new InputMismatchException();
-                }// add validation for content length and sentence length
+                }
                 this.done = true;
                 pm.addPost(postContent);
             }
             catch (InputMismatchException e){
-                System.out.println("Invalid post content");
+                System.out.println("Post content cannot be empty");
             }
         }
     }

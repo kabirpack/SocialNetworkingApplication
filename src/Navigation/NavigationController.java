@@ -3,6 +3,8 @@ package Navigation;
 import ConnectionManager.ConnectionMenu;
 import Main.View.MainMenu;
 import NewsFeed.Controller.NewsFeed;
+import Posts.Model.Post;
+import Posts.View.PostReactionMenu;
 import UserProfile.Model.UserProfile;
 import UserProfile.View.Implementation.MyProfileMainMenu;
 
@@ -28,6 +30,11 @@ public class NavigationController {
     public static void goToNewsFeed() throws ParseException {
         NewsFeed newsFeed = new NewsFeed();
         newsFeed.showNewsFeed();
+    }
+
+    public static void goToOthersReactionMenu(Post post) throws ParseException {
+        PostReactionMenu postReactionMenu = new PostReactionMenu();
+        postReactionMenu.showOthersReactionMenuSelector(post);
     }
 
 }

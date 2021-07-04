@@ -5,7 +5,6 @@ import Posts.Model.Post;
 import SessionManager.SessionManager;
 import SocialNetworkDb.Implementation.SocialNetworkDb;
 import UserProfile.Model.UserProfile;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -50,7 +49,7 @@ public class NewsFeed {
                     System.out.println("Originally posted by "+ post.getPostedProfile().getUsername());
                     System.out.println(index + ". " + "Shared by "+ post.getSharedProfile() + " :" + post.getPostContent()+ " " + post.getPostedTime());
                 }
-                System.out.println("Likes : " + post.getLikes().size() + " Comments " + post.getProfileCommentMap().size() + " Shares " + post.getShares().size());
+                System.out.println("Likes : " + post.getLikes().size() + " Comments " + post.getComments().size() + " Shares " + post.getShares().size());
                 System.out.println("_______________________________________________________");
                 index++;
             }
@@ -61,8 +60,7 @@ public class NewsFeed {
 
     }
 
-    public ArrayList<Post> sortByTime(ArrayList<Post> posts) throws ParseException {
-        Post temp;
+    public ArrayList<Post> sortByTime(ArrayList<Post> posts){
         if(posts.size() == 1){
             return posts;
         }else {

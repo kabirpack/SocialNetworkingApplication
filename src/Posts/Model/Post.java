@@ -1,9 +1,9 @@
 package Posts.Model;
 
+import Comment.Model.Comment;
 import UserProfile.Model.UserProfile;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Post {
     private String postId;
@@ -11,7 +11,7 @@ public class Post {
     private String postContent;
     private String postedTime;
     private ArrayList<UserProfile> likes = new ArrayList<>();
-    private ArrayList<HashMap<String, String>> profileCommentMap = new ArrayList<>();
+    private ArrayList<Comment> comments = new ArrayList<>();
     private ArrayList<UserProfile> shares = new ArrayList<>();
     private boolean isShared = false;
     private String sharedProfile;
@@ -25,6 +25,14 @@ public class Post {
 
     public Post() {
 
+    }
+
+    public String getPostId() {
+        return postId;
+    }
+
+    public void setPostId(String postId) {
+        this.postId = postId;
     }
 
     public boolean isShared() {
@@ -72,16 +80,13 @@ public class Post {
         this.likes = likes;
     }
 
-    public ArrayList<HashMap<String, String>> getProfileCommentMap() {
-        return profileCommentMap;
+    public ArrayList<Comment> getComments() {
+        return comments;
     }
 
-    public void addComment(String username, String comment){
-        HashMap<String, String> commentMap = new HashMap<>();
-        commentMap.put(username,comment);
-        this.profileCommentMap.add(commentMap);
+    public void setComments(ArrayList<Comment> comments) {
+        this.comments = comments;
     }
-
 
     public ArrayList<UserProfile> getShares() {
         return shares;

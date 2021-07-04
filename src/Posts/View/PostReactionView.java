@@ -1,5 +1,6 @@
 package Posts.View;
 
+import Comment.Model.Comment;
 import Posts.Model.Post;
 import UserProfile.Model.UserProfile;
 
@@ -16,10 +17,11 @@ public class PostReactionView {
     }
 
     public void showComments(Post post){
-        if(post.getProfileCommentMap().size() > 0){
+        if(post.getComments().size() > 0){
 
-            for(int i=0; i<post.getProfileCommentMap().size(); i++){
-                System.out.println(post.getProfileCommentMap().get(i));
+            for(Comment comment : post.getComments()){
+                System.out.println(comment.getProfile().getUsername() + " " + comment.getContent() + " " + comment.getTime());
+                System.out.println("Likes " + comment.getLikes().size() + " Replies " + comment.getReply().size());
             }
         }else{
             System.out.println("No comments yet");

@@ -1,5 +1,6 @@
 package Posts.View;
 
+import Comment.View.CommentReactionMenu;
 import Menu.MenuItems.MenuItems;
 import Menu.MenuSelector.MenuSelector;
 import Navigation.NavigationController;
@@ -15,6 +16,7 @@ import java.util.InputMismatchException;
 public class PostReactionMenu {
     MenuSelector menu = new MenuSelector();
     UtilityManager utility = new UtilityManager();
+    CommentReactionMenu commentReactionMenu = new CommentReactionMenu();
     boolean done;
     public void showReactionMenuSelector(Post post) throws ParseException {
 
@@ -61,6 +63,21 @@ public class PostReactionMenu {
             }
             case 2: {
                 reactionView.showComments(post);
+                choice = menu.showMenuItems(MenuItems.CommentSectionMenu.class);
+                switch (choice){
+                    case 1:{
+                      commentReactionMenu.commentReactionMenu(post);
+                      break;
+                    }
+                    case 2:{
+                      commentReactionMenu.showOthersCommentReaction(post);
+                      break;
+                    }
+                    case 3:{
+                        this.showOthersReactionMenuSelector(post);
+                        return;
+                    }
+                }
                 break;
             }
             case 3:{

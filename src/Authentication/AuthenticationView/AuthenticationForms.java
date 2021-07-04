@@ -33,6 +33,10 @@ public class AuthenticationForms {
                 }
                 System.out.println("Enter password");
                 String passWord = utility.getStringInput();
+                if(!utility.isValidPassword(passWord)){
+                    System.out.println("Password must contains \n Atleast 8 characters \n 1-special characters \n 1- Numeral \n 1- LowerCase\n 1- UpperCase\n No white spaces");
+                    throw new InputMismatchException();
+                }
                 auth.register(userName, passWord);
                 this.done = true;
             } catch (InputMismatchException e) {
