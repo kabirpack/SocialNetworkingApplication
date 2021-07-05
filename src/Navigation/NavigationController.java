@@ -1,6 +1,6 @@
 package Navigation;
 
-import ConnectionManager.ConnectionMenu;
+import ConnectionManager.View.ConnectionMenu;
 import Main.View.MainMenu;
 import NewsFeed.Controller.NewsFeed;
 import Posts.Model.Post;

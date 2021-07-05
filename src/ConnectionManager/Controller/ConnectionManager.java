@@ -1,4 +1,4 @@
-package ConnectionManager;
+package ConnectionManager.Controller;
 
 import Navigation.NavigationController;
 import Posts.Model.Post;

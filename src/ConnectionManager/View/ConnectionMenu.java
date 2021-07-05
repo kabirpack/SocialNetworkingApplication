@@ -1,5 +1,6 @@
-package ConnectionManager;
+package ConnectionManager.View;
 
+import ConnectionManager.Controller.ConnectionManager;
 import Main.View.MainMenu;
 import Menu.MenuItems.MenuItems;
 import Menu.MenuSelector.MenuSelector;

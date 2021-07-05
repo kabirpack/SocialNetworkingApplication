@@ -1,4 +1,4 @@
-package ConnectionManager;
+package ConnectionManager.Interface;
 
 import UserProfile.Model.UserProfile;
 

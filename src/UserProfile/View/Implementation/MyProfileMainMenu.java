@@ -1,6 +1,6 @@
 package UserProfile.View.Implementation;
 
-import ConnectionManager.ConnectionManager;
+import ConnectionManager.Controller.ConnectionManager;
 import Menu.MenuItems.MenuItems;
 import Menu.MenuSelector.MenuSelector;
 import Navigation.NavigationController;

@@ -1,6 +1,6 @@
 package Main.View;
 
-import ConnectionManager.ConnectionManager;
+import ConnectionManager.Controller.ConnectionManager;
 import Menu.MenuItems.MenuItems;
 import Menu.MenuSelector.MenuSelector;
 import NewsFeed.Controller.NewsFeed;

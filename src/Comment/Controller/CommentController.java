@@ -1,5 +1,6 @@
 package Comment.Controller;
 
+import Comment.Controller.Interface.ICommentController;
 import Comment.Model.Comment;
 import Posts.Model.Post;
 import SessionManager.SessionManager;
@@ -8,7 +9,7 @@ import Utilities.UtilityManager;
 
 import java.util.ArrayList;
 
-public class CommentController {
+public class CommentController implements ICommentController {
     UtilityManager utility = new UtilityManager();
     ProfileManager pm = new ProfileManager();
 
