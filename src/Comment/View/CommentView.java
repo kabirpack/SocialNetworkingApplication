@@ -27,8 +27,9 @@ public class CommentView {
         int choice = utility.getIntInput();
         Comment chosenComment =  post.getComments().get(choice-1);
         if(chosenComment.getReply().size() > 0){
+            int index = 0;
             for(Comment reply : chosenComment.getReply()){
-                System.out.println(reply.getProfile().getUsername() + " : " + " " + reply.getContent());
+                System.out.println(index + ". " +reply.getProfile().getUsername() + " : " + " " + reply.getContent());
             }
         }
     }

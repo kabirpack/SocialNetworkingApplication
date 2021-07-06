@@ -51,6 +51,7 @@ public class MyProfileMainMenu {
 
                     switch (choice) {
                         case 1: {
+                            profileView.showMyRequests();
                             UserProfile chosenProfile =  profileView.chooseProfile(SessionManager.getUser().getSentRequestProfiles());
                             cm.deleteSentRequest(chosenProfile);
                             break;
@@ -70,11 +71,13 @@ public class MyProfileMainMenu {
 
                     switch (choice) {
                         case 1: {
+                            profileView.showReceivedRequests();
                             UserProfile chosenProfile =  profileView.chooseProfile(SessionManager.getUser().getRcvdRequestProfiles());
                             cm.deleteReceivedRequest(chosenProfile);
                             break;
                         }
                         case 2: {
+                            profileView.showReceivedRequests();
                             UserProfile chosenProfile =  profileView.chooseProfile(SessionManager.getUser().getRcvdRequestProfiles());
                             cm.acceptRequest(chosenProfile);
                             break;
